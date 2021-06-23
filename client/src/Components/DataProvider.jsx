@@ -1,30 +1,31 @@
 import React from 'react';
 import Header from "./Header";
 import Main from "./Main";
-import SideDrawer from "./SideDrawer";
 
 
 class DataProvider extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            tab:''
+        };
     }
 
-    openSidebar = () => {
-        document.getElementById("auth-drawer").style.width = "50%";
+    changeTab = (value) => {
+        this.setState({
+          tab:value
+        },()=>{
+            console.log('path changed',this.state);
+        })
     }
-    
-    closeSidebar = () => {
-        document.getElementById("auth-drawer").style.width = "0";
-    }
-
 
     render() {
+        const {tab} =  this.state;
+
         return (
             <div>
-                <Header openDrawer = {this.openSidebar} closeDrawer = {this.closeSidebar}/>
-                <Main openDrawer = {this.openSidebar} closeDrawer = {this.closeSidebar}/>
-                <SideDrawer closeDrawer = {this.closeSidebar}/>
+                <Header  path={tab} navigate={this.changeTab} />
+                <Main path={tab} navigate={this.changeTab}/>
             </div>
         );
     }
