@@ -5,6 +5,7 @@ import WeekCalendar from './WeekCalendar';
 
 
 const WeekDays = ['Sun' , 'Mon' , 'Tue' , 'Wed' , 'Thu' , 'Fri' , 'Sat']
+const Months = ['January' , 'February' ,'March' , 'April' ,'May' , 'June' , 'July' , 'August' , 'September' , 'October' , 'November' , 'December']
 
 class Calendar extends React.Component {
 
@@ -18,12 +19,31 @@ class Calendar extends React.Component {
             backPaddingsDays:0,
             year:0,
             month:0,
+            displayWeek:[]
         };
     }
 
     componentDidMount(){
         this.getFirstDayInMonth();
         this.daysInMonth();
+        this.tryWeekDays();
+    }
+
+    tryWeekDays = () => {
+        let curr = new Date()
+        let week = []
+
+        for (let i = 0; i <= 6; i++) {
+            let first = curr.getDate()  - curr.getDay() + i
+            let day = new Date(curr.setDate(first )).toString() //.slice(0, 10)
+            week.push(day)
+        }
+
+        this.setState({
+            displayWeek:week
+        },()=>{
+            console.log(this.state.displayWeek)
+        })
     }
 
 
@@ -53,14 +73,37 @@ class Calendar extends React.Component {
 
         var dt = new Date();
         var yr = dt.getFullYear();
-        var mn= dt.getMonth() + this.state.navMonth;
-        var firstDay = new Date(yr,mn ,1).getDay();
+        var mn = dt.getMonth() + this.state.navMonth;
+        var firstDay = new Date(yr,mn,1).getDay();
+
+        let modifiedYear = yr;
+
+        mn = mn + 1;
+        
+        if(mn < 1)
+        {
+            modifiedYear = yr - ( Math.ceil((-1 * mn + 1) / 12));
+        }
+        else if(mn > 12)
+        {
+           modifiedYear = yr + Math.floor(mn / 12);
+        }
+
+        if(mn > 12 )
+        {
+              mn = mn % 12;
+        }
+
+        if( mn < 1)
+        {
+            mn = 12 - ( (mn * -1) % 12);
+        }
 
         this.setState({
             ...this.state,
             firstDay:firstDay,
-            year:yr,
-            month:mn
+            year: modifiedYear,
+            month: mn - 1
         })
     }
 
@@ -70,7 +113,7 @@ class Calendar extends React.Component {
             navMonth: this.state.navMonth - 1
         },()=>{
             this.getFirstDayInMonth();
-        this.daysInMonth();
+            this.daysInMonth();
         })
     }
 
@@ -83,6 +126,8 @@ class Calendar extends React.Component {
         })
     }
 
+    
+
     render() {
 
        
@@ -91,14 +136,21 @@ class Calendar extends React.Component {
         return (
             <div className="calender">
 
+                {/* previous next buttons common for all views */}
                  <div className="prev-next-month">
                    <span onClick={this.prevMonth}  className="previous round">&#8249;</span>
                    <span onClick={this.nextMonth} className="next round">&#8250;</span>
                  </div>
 
+                 {/* display month and year common for all views */}
+
+                 <div className="display_month_year">
+                     <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
+                 </div>
+
                {(viewMode === 'Month') && <MonthCalendar month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Week') && <WeekCalendar weekDays ={WeekDays}/>}
-               {(viewMode === 'Day') && <DayCalendar />}
+               {(viewMode === 'Week') && <WeekCalendar displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Day') && <DayCalendar month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
 
             </div>
         );

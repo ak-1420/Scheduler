@@ -297,6 +297,62 @@ span {
           box-shadow: 0 0 10px #719ECE;
 }
 
+.day_calendar_box {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px auto;
+  font-size: 1rem;
+  text-align: center;
+  height: auto;
+  display: -ms-grid;
+  display: grid;
+  cursor: pointer;
+}
+
+.day_calendar_box .hours {
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+}
+
+.day_calendar_box .hours:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+.week_calendar_box {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px auto;
+  font-size: 1rem;
+  text-align: center;
+  height: auto;
+  display: -ms-grid;
+  display: grid;
+  cursor: pointer;
+}
+
+.week_calendar_box .hours {
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  padding: 10px;
+}
+
+.week_calendar_box .hours:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
 .next_prev_calender_box {
   background-color: #f8f9fa;
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -306,6 +362,18 @@ span {
   height: auto;
   margin: 0 5px 0 5px;
   cursor: pointer;
+}
+
+.display_month_year {
+  position: absolute;
+  top: 0%;
+  left: 27%;
+  padding: 5px;
+  font-size: 1rem;
+  text-align: center;
+  height: 50px;
+  width: auto;
+  margin: 5px;
 }
 
 span {
@@ -342,4 +410,12 @@ span:hover {
   width: 120px;
   top: 2%;
   left: 20%;
+}
+
+.day_ui {
+  width: '35px';
+  height: '35px';
+  padding: '8px';
+  margin-left: 'auto';
+  margin-right: 'auto';
 }
