@@ -6,11 +6,18 @@ class DateByView extends React.Component {
         this.state = {};
     }
 
+    handleChange = (e) => {
+        const view_mode = e.target.value
+        this.props.changeViewMode(view_mode);
+    }
+
+
+
     render() {
         return (
             <div className="calender_view">
-                <select name="calender_view" id="calenderView">
-                    <option selected={true} value="Month">Month</option>
+                <select name="calender_view" id="calenderView" onChange={this.handleChange}>
+                    <option value="Month">Month</option>
                     <option value="Day">Day</option>
                     <option value="Week">Week</option>
                 </select>

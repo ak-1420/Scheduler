@@ -1,4 +1,5 @@
 import React from 'react';
+import Calendar from './Calendar';
 import Login from './Login'
 import SignUp from './SignUp';
 
@@ -10,13 +11,13 @@ class Main extends React.Component {
     }
 
     render() {
-        const {path,navigate} = this.props;
+        const {path,navigate,viewMode} = this.props;
         return (
             <main>
                {path === "" && <h1 className="text-center vertical-center center-title">classroom Scheduler</h1> }
                { path === "signin" && <Login path={path} navigate={navigate}/>   }
               {path === "signup" && <SignUp path={path} navigate={navigate} /> }
-              {path === "calender" && <h1 className="text-center vertical-center center-title">PepCoding Calender </h1> }
+              {path === "calendar" && <Calendar  viewMode={viewMode} /> }
             </main>
         );
     }

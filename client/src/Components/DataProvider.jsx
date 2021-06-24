@@ -7,7 +7,9 @@ class DataProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tab:'calender'
+            tab:'calendar',
+            viewMode:'Month',
+            navMonth:0
         };
     }
 
@@ -19,13 +21,20 @@ class DataProvider extends React.Component {
         })
     }
 
+    changeViewMode = (value) => {
+        this.setState({
+            ...this.state,
+            viewMode:value
+        })
+    }
+
     render() {
-        const {tab} =  this.state;
+        const {tab , viewMode } =  this.state;
 
         return (
             <div>
-                <Header  path={tab} navigate={this.changeTab} />
-                <Main path={tab} navigate={this.changeTab}/>
+                <Header   changeViewMode = {this.changeViewMode} path={tab} navigate={this.changeTab} />
+                <Main  viewMode = {viewMode} path={tab} navigate={this.changeTab}/>
             </div>
         );
     }
