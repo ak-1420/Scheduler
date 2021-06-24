@@ -79,4 +79,42 @@ exports.signInWithEmailAndPassword = (req , res) => {
 };
 
 
+exports.findAll = (req,res) => {
+
+    User.findAll((error,users) => {
+        if(error){
+            console.log('error:',error);
+            res.send(error)
+        }
+        else
+        {
+            res.json({
+                error:false,
+                message:'users fetched successfully!',
+                data:users
+            });
+        }
+    });
+};
+
+
+exports.findById = (req,res) => {
+    const userId = req.params.id
+
+    User.findById(userId,(error,user) => {
+        if(error){
+            console.log('error:',error)
+            res.send(error)
+        }
+        else{
+            console.log('success:',res);
+            res.json({
+               error:false,
+               message:`user with id: ${userId} fetched successfully!`,
+               data:user
+            });
+        }
+    });
+};
+
 

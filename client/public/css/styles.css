@@ -12,9 +12,7 @@
 }
 
 .text-center {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  text-align: center;
 }
 
 body {
@@ -191,4 +189,58 @@ main {
 
 span {
   cursor: pointer;
+}
+
+.mt-4 {
+  margin-top: 4rem;
+}
+
+.vertical-center {
+  position: absolute;
+  top: 45%;
+  -webkit-transform: translateY(-45%);
+          transform: translateY(-45%);
+  left: 37%;
+}
+
+.center-title {
+  text-transform: uppercase;
+}
+
+.calender_view {
+  border-radius: 20px;
+  width: 110px;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: 10%;
+  top: 15%;
+  -webkit-transform: translateY(15%);
+          transform: translateY(15%);
+}
+
+.calender_view select {
+  width: 100%;
+  text-transform: capitalize;
+  padding: 10px;
+  height: 40px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.calender_view select:hover {
+  background-color: #f8f9fa;
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+.calender_view option {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.calender_view option:hover {
+  background-color: #007bff;
 }

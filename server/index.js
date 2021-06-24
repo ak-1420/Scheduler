@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 
 
 const port = process.env.PORT || 1420
@@ -10,16 +11,32 @@ app.use(express.urlencoded({
 }))
 
 
-app.get('/',(req,res) =>{
-    res.send('<h1 style="text-align:center">Hello from Scheduler!</h1>')
+// app.use(express.static(path.join(__dirname, '../client' , 'build')))
+
+
+
+
+// app.get('/*', function(req, res) {
+//     res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
+// });
+
+app.get('/',(req,res) => {
+    res.send('Server ')
 })
+
 
 // require userRoutes
 const userRoutes = require('./src/routes/user.routes')
+// require batchroutes
+const batchRoutes = require('./src/routes/batch.routes')
+// require schedule routes
+const scheduleRoutes = require('./src/routes/schedule.routes')
 
 // using as middleware
 
 app.use('/api/v1/users',userRoutes)
+app.use('/api/v1/batches',batchRoutes)
+app.use('/api/v1/schedules',scheduleRoutes)
 
 
 app.listen(port , () => {

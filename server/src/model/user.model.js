@@ -45,6 +45,38 @@ User.signInWithEmailAndPassword = (user,result) => {
 };
 
 
+//find all Users
+
+User.findAll = (result) => {
+    const type ='admin'
+    dbConn.query('SELECT * FROM users WHERE type != ?',type,(err,res) => {
+            if(err){
+                console.log('error:',err)
+                result(err,null)
+            }
+            else
+            {
+                console.log(res)
+                result(null,res)
+            }
+    });
+};
+
+User.findById = (userId,result) => {
+    dbConn.query(`SELECT * FROM users WHERE id = ? `,userId,(err,res) => {
+             if(err){
+                 console.log('error:',err)
+                 result(err,null)
+             }
+             else
+             {
+                 console.log(res)
+                 result(null,res)
+             }
+    });
+};
+
+
 
 
 module.exports = User;
