@@ -13,18 +13,18 @@ app.use(express.urlencoded({
 }))
 
 
-// app.use(express.static(path.join(__dirname, '../client' , 'build')))
+app.use(express.static(path.join(__dirname, '../client' , 'build')))
 
 
 
 
-// app.get('/*', function(req, res) {
-//     res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
-// });
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
+});
 
-app.get('/',(req,res) => {
-    res.send('Server ')
-})
+// app.get('/',(req,res) => {
+//     res.send('Server ')
+// })
 
 
 // require userRoutes

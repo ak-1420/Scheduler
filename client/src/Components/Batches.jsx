@@ -95,12 +95,17 @@ class Batches extends React.Component {
 
         let isBatchIdExists = false
 
-        batches.map((batch,indx) => {
+      const x =  batches.map((batch,indx) => {
             if(batch.batchId === batch_id)
             {
                    isBatchIdExists = true
+                   return true
             }
         })
+
+        console.log(x);
+
+
 
         if(isBatchIdExists)
         {
