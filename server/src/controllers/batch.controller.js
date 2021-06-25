@@ -4,8 +4,9 @@ const e = require('express');
 const Batch = require('../model/batch.model')
 
 exports.create = (req,res) => {
-
+    console.log(req);
     const newBatch = req.body.batchList
+    console.log(newBatch,'from server')
     if(req.body.constructor === Object &&
         Object.keys(req.body).length === 0){
           res.status(400).send({

@@ -11,6 +11,7 @@ class Header extends React.Component {
 
     home = () => {
        this.props.navigate('')
+       window.location.pathname = '/'
     }
 
     navSignIn = () => {
@@ -25,7 +26,12 @@ class Header extends React.Component {
 
         return (
             <header>
-                { <h1 className="text-title" onClick={this.home}>Classroom <span >Scheduler</span></h1> }
+                { <h1 className="text-title" onClick={this.home}>Classroom <small>Scheduler</small></h1> }
+
+                <ul className="list-group">
+                    <a className="list-group-item" href="/batches"> Batches </a>
+                    <a className="list-group-item" href="/teachers">Teachers</a>
+                </ul>
 
                 {(this.props.path === 'calendar') && <DateByView changeViewMode = {this.props.changeViewMode} /> }
                  

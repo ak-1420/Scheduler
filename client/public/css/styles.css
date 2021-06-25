@@ -117,6 +117,30 @@ main .calender {
   padding: 10px;
 }
 
+.container-batch-form-left {
+  margin: 0 auto 0 0;
+  width: 50%;
+  min-height: 320px;
+  background-color: #f8f9fa;
+  height: 80vh;
+  padding: 10px;
+  float: left;
+}
+
+.container-batch-form-right {
+  margin: 0 0 0 auto;
+  width: 50%;
+  min-height: 320px;
+  background-color: #f8f9fa;
+  height: 80vh;
+  padding: 10px;
+}
+
+.scroller {
+  overflow-y: auto;
+  max-height: 75vh;
+}
+
 .login {
   margin: 2% auto 2% auto;
   width: 100%;
@@ -226,7 +250,7 @@ span {
   width: 110px;
   padding: 10px;
   margin-left: auto;
-  margin-right: 10%;
+  margin-right: 5%;
   top: 15%;
   -webkit-transform: translateY(15%);
           transform: translateY(15%);
@@ -288,6 +312,32 @@ span {
   font-size: 1rem;
   text-align: center;
   height: 50px;
+}
+
+.user_box {
+  font-size: 1rem;
+  text-align: center;
+  height: 50px;
+  width: auto;
+  background-color: #fff;
+  border: 2px solid #007bff;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.user_box:hover {
+  outline: none !important;
+  border: 2px solid #28a745;
+  -webkit-box-shadow: 0 0 10px #71ce98;
+          box-shadow: 0 0 10px #71ce98;
+}
+
+.users-list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
 }
 
 .calendar_box:hover {
@@ -425,4 +475,158 @@ span:hover {
   padding: '8px';
   margin-left: 'auto';
   margin-right: 'auto';
+}
+
+.list-group {
+  display: block;
+  margin-left: 60%;
+  width: 20%;
+  margin-right: auto;
+  float: left;
+}
+
+.list-group .list-group-item {
+  list-style-type: none;
+  height: 30px;
+  padding: 5px;
+  float: left;
+  margin: 10px;
+  cursor: pointer;
+  top: 2%;
+}
+
+.list-group .list-group-item a {
+  text-decoration: none;
+}
+
+.list-group .list-group-item:hover {
+  outline: none !important;
+  border: 1px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+a:link {
+  color: blue;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  background-color: #fff;
+}
+
+a:active {
+  color: blue;
+}
+
+a {
+  text-decoration: none;
+}
+
+.batches {
+  margin: 10px;
+  min-height: 80vh;
+}
+
+.teachers {
+  margin: 10px;
+  min-height: 80vh;
+}
+
+.grid-batches {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto auto;
+      grid-template-columns: auto auto auto auto auto;
+  min-height: 20vh;
+}
+
+.grid-batches .batch-box {
+  background-color: white;
+  border: 2px solid #343a40;
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+  height: 20vh;
+  margin: 15px 5px 0 5px;
+  cursor: pointer;
+}
+
+.grid-batches .batch-box:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+.text-batch-heading {
+  padding: 2px;
+  text-transform: uppercase;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #fff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 2px;
+  border-style: none;
+}
+
+.btn-primary:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+.btn-danger:hover {
+  outline: none !important;
+  border: 2px solid #dc3545;
+  -webkit-box-shadow: 0 0 10px #ce7171;
+          box-shadow: 0 0 10px #ce7171;
+}
+
+.batch-header {
+  width: 100%;
+  border: 2px solid #343a40;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pull-right {
+  margin-left: auto;
+}
+
+.pull-left {
+  margin-right: auto;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #fff;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 2px;
+  border-style: none;
+}
+
+.btn-secondary:hover {
+  outline: none !important;
+  border: 2px solid #6c757d;
+  -webkit-box-shadow: 0 0 10px #d8d8d8;
+          box-shadow: 0 0 10px #d8d8d8;
+}
+
+.user_grid {
+  display: 'grid';
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
 }
