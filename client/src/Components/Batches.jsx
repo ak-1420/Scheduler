@@ -26,7 +26,7 @@ class Batches extends React.Component {
 
 
     fetchUsers = () => {
-        const url = `http://localhost:1420/api/v1/users`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users`
 
         fetch(url).then( (response) => response.json())
         .then( (data) => {
@@ -41,7 +41,7 @@ class Batches extends React.Component {
     }
 
     fetchBatches  = () => {
-        const url = `http://localhost:1420/api/v1/batches/`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/batches/`
         fetch(url)
         .then((response)=>response.json())
         .then((data)=>{
@@ -137,7 +137,7 @@ class Batches extends React.Component {
 
       console.log('add this batch now:',batch)
      
-      const url = `http://localhost:1420/api/v1/batches/`
+      const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/batches/`
 
       fetch(url,{
         method: "post",

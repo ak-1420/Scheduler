@@ -45,7 +45,7 @@ class Calendar extends React.Component {
 
 
     fetchSchedules = () => {
-        const url = `http://localhost:1420/api/v1/schedules/`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/schedules/`
         
         fetch(url)
         .then((response)=>response.json())

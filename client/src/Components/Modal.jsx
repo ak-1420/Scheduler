@@ -36,7 +36,7 @@ class Modal extends React.Component {
     }
 
     fetchSchedules = () => {
-        const url = `http://localhost:1420/api/v1/schedules/`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/schedules/`
         
         fetch(url)
         .then((response)=>response.json())
@@ -55,7 +55,7 @@ class Modal extends React.Component {
     }
 
     fetchBatches  = () => {
-        const url = `http://localhost:1420/api/v1/batches/`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/batches/`
         fetch(url)
         .then((response)=>response.json())
         .then((data)=>{
@@ -73,7 +73,7 @@ class Modal extends React.Component {
 
     fetchTeachers = () => {
 
-        const url = `http://localhost:1420/api/v1/users`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users`
 
         fetch(url).then( (response) => response.json())
         .then( (data) => {
@@ -178,7 +178,7 @@ class Modal extends React.Component {
     }
 
     postSchedule = (sdl) => {
-        const url = `http://localhost:1420/api/v1/schedules`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/schedules`
 
         fetch(url,{
             method: "post",

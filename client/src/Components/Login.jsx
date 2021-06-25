@@ -36,7 +36,7 @@ class Login extends React.Component {
 
         // perform login operation
 
-        const url = `http://localhost:1420/api/v1/users/signin`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users/signin`
 
         fetch(url,{
           method: "post",

@@ -18,7 +18,7 @@ class Teachers extends React.Component {
 
 
     fetchTeachers = () => {
-        const url = `http://localhost:1420/api/v1/users`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users`
 
         fetch(url).then( (response) => response.json())
         .then( (data) => {
@@ -65,7 +65,7 @@ class Teachers extends React.Component {
             return;
         }
 
-        const url = `http://localhost:1420/api/v1/users/signup`
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users/signup`
 
         fetch(url,{
           method: "post",
