@@ -34,6 +34,7 @@ class DataProvider extends React.Component {
 
         return (
             <div>
+               
                 <Header   changeViewMode = {this.changeViewMode} path={tab} navigate={this.changeTab} />
                 <Main  viewMode = {viewMode} path={tab} navigate={this.changeTab}/>
             </div>

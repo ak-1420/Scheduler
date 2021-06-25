@@ -110,6 +110,7 @@ class Batches extends React.Component {
 
         let batch = []
         let isAtleaseOneStudentSelected =  false
+        
         users.map((user,indx) => {
             if(user.type === 'student')
             if(document.getElementById(`checkbox${user.id}`).checked){
@@ -157,6 +158,13 @@ class Batches extends React.Component {
    
 
     render() {
+
+        const user = (localStorage.getItem('user') !== null) ? JSON.parse(localStorage.getItem('user')) : null ;
+        
+
+        if(!user) {
+            return (<> </>);
+        }
 
         const {batches ,users} = this.state;
 

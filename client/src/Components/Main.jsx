@@ -25,16 +25,46 @@ class Main extends React.Component {
                 <Teachers />
             </main>
         );
-        
-        return (
+
+        if(window.location.pathname === '/') return (
             <main>
-                        
-                        {path === "" && <h1 className="text-center vertical-center center-title">classroom Scheduler</h1> }
-                        {path === "signin" && <Login path={path} navigate={navigate}/>   }
-                        {path === "signup" && <SignUp path={path} navigate={navigate} /> }
-                        {path === "calendar" && <Calendar  viewMode={viewMode} /> }
+                <h1 className="text-center vertical-center center-title">classroom Scheduler</h1> 
             </main>
         );
+        if(window.location.pathname === '/signin') return (
+            <main>
+                <Login path={path} navigate={navigate}/>
+            </main>
+        );
+        if(window.location.pathname === '/signup') return (
+            <main>
+                <SignUp path={path} navigate={navigate} />
+            </main>
+        );
+        if(window.location.pathname === '/calendar') return (
+            <main>
+                <Calendar  viewMode={viewMode} /> 
+            </main>
+        );
+
+        return (
+            <main>
+                <center>
+                    <h4 className="center" >Oops Page Not Found </h4>
+                </center>
+            </main>
+        );
+        
+        
+        // return (
+        //     <main>
+                        
+        //                 {window.location.pathname === "" && <h1 className="text-center vertical-center center-title">classroom Scheduler</h1> }
+        //                 {path === "signin" && <Login path={path} navigate={navigate}/>   }
+        //                 {path === "signup" && <SignUp path={path} navigate={navigate} /> }
+        //                 {path === "calendar" && <Calendar  viewMode={viewMode} /> }
+        //     </main>
+        // );
     }
 
 }

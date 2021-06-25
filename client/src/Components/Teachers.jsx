@@ -93,6 +93,12 @@ class Teachers extends React.Component {
 
 
     render() {
+        const user = (localStorage.getItem('user') !== null) ? JSON.parse(localStorage.getItem('user')) : null ;
+
+
+        if(!user) {
+            return (<> </>);
+        }
 
         const {teachers} = this.state;
         return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import DayCalendar from './DayCalendar';
+import Modal from './Modal';
 import MonthCalendar from './MonthCalendar';
 import WeekCalendar from './WeekCalendar';
 
@@ -12,6 +13,7 @@ class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            schedules:[],
             navMonth:0,
             numberOfDays : 0,
             firstDay:0,
@@ -22,7 +24,15 @@ class Calendar extends React.Component {
             displayWeek:[],
             navWeek:0,
             navDay:0,
-            weeks:[]
+            weeks:[],
+            schedule:{
+                date:'',
+                timings:'',
+                batchId:'',
+                teacherId:'',
+                title:'',
+                scheduleId:''
+            }
         };
     }
 
@@ -30,6 +40,33 @@ class Calendar extends React.Component {
         this.getFirstDayInMonth();
         this.daysInMonth();
         this.tryWeekDays();
+        this.fetchSchedules();
+    }
+
+
+    fetchSchedules = () => {
+        const url = `http://localhost:1420/api/v1/schedules/`
+        
+        fetch(url)
+        .then((response)=>response.json())
+        .then((data)=>{
+            console.log('data from schedules:',data);
+            this.setState({
+                ...this.state,
+                schedules:data.data
+            },() => {
+                console.log('schedules in ui ',this.state.schedules)
+            })
+        }).catch((error)=>{
+            console.log('error:',error)
+        })
+
+    }
+
+    updateSchedule = (newSchedule) => {
+        this.setState({
+            schedule:newSchedule
+        })
     }
 
     tryWeekDays = () => {
@@ -214,6 +251,8 @@ class Calendar extends React.Component {
         return (
             <div className="calender">
 
+               <Modal schedule = {this.state.schedule}/>
+
                 {/* previous next buttons common for all views */}
                  {
                      (viewMode === 'Month') &&
@@ -245,9 +284,9 @@ class Calendar extends React.Component {
                      <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
                  </div>
 
-               {(viewMode === 'Month') && <MonthCalendar month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Week') && <WeekCalendar weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Day') && <DayCalendar navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Month') && <MonthCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Week') && <WeekCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Day') && <DayCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
 
             </div>
         );
