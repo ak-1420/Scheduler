@@ -23,12 +23,15 @@ class WeekCalendarBox extends React.Component {
     }
 
     addSchedule = () => {
-        const {year , month , day,fpd,weekday} = this.props;
+        const {year , month , day,fpd,weekday ,id,fd,finaldates} = this.props;
         
-        const date = `${weekday}  ${day - fpd}/${month + 1}/${year}`;
+        const date = `${weekday}  ${finaldates[id - fd]}/${month + 1}/${year}`;
         console.log('add event on:',date)
         window.alert(`add event on ${date}`)
     }
+
+    
+    
 
     render() {
         
@@ -37,20 +40,28 @@ class WeekCalendarBox extends React.Component {
         //fpd: front padding days
         //bpd: back padding days
 
-        const {id ,displayWeek, day , weekday,isWeekBox,nd,fd,fpd,bpd} = this.props;
-
+        const {id ,finaldates , displayWeek, day , weekday,isWeekBox,nd,fd,fpd,bpd} = this.props;
+                 if(id < fd)
+                 {
+                     return (
+                             <div className="week_calendar_box"  id={id}>
+                                 <h2 className="text-primary"></h2>
+                             </div>
+                     );
+                 }
 
                 return (
-                    <div className="week_calendar_box" id = {id} >
-                     <h2 className="text-primary">{displayWeek.substr(7,3)}</h2>
+                    <div className="week_calendar_box" id = {id} onClick={this.addSchedule}>
+                     <h2 className="text-primary">{finaldates[id-fd]}</h2>
                      
                      {/* draw 24 cols */} 
-                     {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24].map((indx,val) => {
+
+                     {/* {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24].map((indx,val) => {
                          return(
                             <div className="hours" key={indx}>
                             </div>
                          );
-                     })}
+                     })} */}
 
                     </div>
                  );

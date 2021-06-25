@@ -19,7 +19,10 @@ class Calendar extends React.Component {
             backPaddingsDays:0,
             year:0,
             month:0,
-            displayWeek:[]
+            displayWeek:[],
+            navWeek:0,
+            navDay:0,
+            weeks:[]
         };
     }
 
@@ -104,6 +107,18 @@ class Calendar extends React.Component {
             firstDay:firstDay,
             year: modifiedYear,
             month: mn - 1
+        },()=>{
+            this.getWeeks();
+        })
+    }
+
+
+    prevWeek = () => {
+        this.setState({
+            navWeek:this.state.navWeek - 1
+        },()=>{
+            this.getWeeks();
+            console.log(this.state.navWeek , 'navweek')
         })
     }
 
@@ -126,8 +141,71 @@ class Calendar extends React.Component {
         })
     }
 
-    
+    nextWeek = () => {
+        this.setState({
+            navWeek:this.state.navWeek + 1
+        },()=>{
+            this.getWeeks();
+            console.log(this.state.navWeek , 'navweek')
+        })
+    }
 
+    // get weeks array of given year and month
+
+    getWeeksInMonth = (year, month) => {
+
+        const weeks = [],
+          firstDate = new Date(year, month, 1),
+          lastDate = new Date(year, month + 1, 0),
+          numDays = lastDate.getDate();
+      
+        let dayOfWeekCounter = firstDate.getDay();
+      
+        for (let date = 1; date <= numDays; date++) {
+          if (dayOfWeekCounter === 0 || weeks.length === 0) {
+            weeks.push([]);
+          }
+          weeks[weeks.length - 1].push(date);
+          dayOfWeekCounter = (dayOfWeekCounter + 1) % 7;
+        }
+      
+        return weeks
+          .filter((w) => !!w.length)
+          .map((w) => ({
+            start: w[0],
+            end: w[w.length - 1],
+            dates: w,
+          }));
+      }
+
+      getWeeks = () => {
+          const {year,month,firstDay,navWeek} = this.state;
+
+          console.log('first day of the month:',firstDay );
+
+          const weeks_of_month = this.getWeeksInMonth(year,month);
+
+          this.setState({
+              weeks:weeks_of_month,
+          },()=>{
+              console.log('week days list:',this.state);
+          })
+
+      }
+
+      nextDay = () => {
+          this.setState({
+              navDay : this.state.navDay + 1
+          })
+      }
+
+      prevDay = () => {
+          this.setState({
+              navDay: this.state.navDay - 1
+          })
+      }
+
+      
     render() {
 
        
@@ -137,10 +215,29 @@ class Calendar extends React.Component {
             <div className="calender">
 
                 {/* previous next buttons common for all views */}
-                 <div className="prev-next-month">
-                   <span onClick={this.prevMonth}  className="previous round">&#8249;</span>
-                   <span onClick={this.nextMonth} className="next round">&#8250;</span>
-                 </div>
+                 {
+                     (viewMode === 'Month') &&
+                     <div className="prev-next-month">
+                       <span onClick={this.prevMonth}  className="previous round">&#8249;</span>
+                       <span onClick={this.nextMonth} className="next round">&#8250;</span>
+                   </div>
+                 }
+
+                {
+                     (viewMode === 'Week') &&
+                     <div className="prev-next-month">
+                       <span onClick={this.prevWeek}  className="previous round">&#8249;</span>
+                       <span onClick={this.nextWeek} className="next round">&#8250;</span>
+                   </div>
+                 }
+
+                {
+                     (viewMode === 'Day') &&
+                     <div className="prev-next-month">
+                       <span onClick={this.prevDay}  className="previous round">&#8249;</span>
+                       <span onClick={this.nextDay} className="next round">&#8250;</span>
+                   </div>
+                 }
 
                  {/* display month and year common for all views */}
 
@@ -149,8 +246,8 @@ class Calendar extends React.Component {
                  </div>
 
                {(viewMode === 'Month') && <MonthCalendar month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Week') && <WeekCalendar displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Day') && <DayCalendar month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Week') && <WeekCalendar weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Day') && <DayCalendar navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
 
             </div>
         );

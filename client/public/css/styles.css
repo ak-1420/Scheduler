@@ -331,7 +331,7 @@ span {
   padding: 10px auto;
   font-size: 1rem;
   text-align: center;
-  height: auto;
+  height: 80vh;
   display: -ms-grid;
   display: grid;
   cursor: pointer;
@@ -347,6 +347,13 @@ span {
 }
 
 .week_calendar_box .hours:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}
+
+.week_calendar_box:hover {
   outline: none !important;
   border: 2px solid #007bff;
   -webkit-box-shadow: 0 0 10px #719ECE;

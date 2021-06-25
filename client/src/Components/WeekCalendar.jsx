@@ -13,15 +13,25 @@ class WeekCalendar extends React.Component {
     }
 
     componentDidMount(){
-
     }
 
     render() {
 
-        const {displayWeek , weekDays ,firstDay , numberOfDays , backPaddingsDays , frontPaddingDays ,year,month} = this.props;
+        const {weeks,navWeek,displayWeek , weekDays ,firstDay , numberOfDays , backPaddingsDays , frontPaddingDays ,year,month} = this.props;
+        
+        console.log(this.props,'from week');
+
+        let this_week_days;
+
+        if(weeks && weeks[navWeek])
+        {
+            this_week_days =  weeks[navWeek].dates
+           console.log(this_week_days);
+        }
 
         return (
             <div className="month_calendar">
+                
                 {
                     weekDays.map( (val,indx) => {
                         return(
@@ -33,7 +43,7 @@ class WeekCalendar extends React.Component {
                 {
                     days.map ((val,indx) => {
                        return(
-                        <WeekCalendarBox displayWeek ={displayWeek[val-1]} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={firstDay} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
+                        <WeekCalendarBox finaldates={this_week_days} displayWeek ={displayWeek[val-1]} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={7 - this_week_days.length} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
                        );
                     })
                 }
