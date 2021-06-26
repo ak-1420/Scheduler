@@ -331,7 +331,7 @@ class Calendar extends React.Component {
 
                  {/* display month and year common for all views */}
 
-                 <div className="calender_view teacher-filter" style={{zIndex:10}}>
+                 <div className="calender_view teacher-filter">
 
                 <select  name="teacherId" id="selectTeacher"  title="filter by teacher id" onClick={this.filterTeacher}>
                 <option value={-1}>filter by teacher id</option>
