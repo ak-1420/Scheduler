@@ -57,6 +57,7 @@ class Login extends React.Component {
           {
              const user = data.data[0]
              window.localStorage.setItem('user',JSON.stringify(user));
+             window.alert('Login successful!')
              window.location.pathname = '/calendar'
           }
           else if(data.status === 'no-user-exists')
