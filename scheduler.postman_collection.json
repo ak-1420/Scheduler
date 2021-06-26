@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "4a2952f6-95ab-4961-b8cc-2af2f421c6a6",
+		"name": "scheduler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "sign in a user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"arunkumarkalakuntla2308@gmail.com\",\r\n    \"password\":\"pepcoding@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/users/signin",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"newuser@gmail.com\",\r\n    \"password\":\"newuser\",\r\n    \"type\":\"student\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/users/signup",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/users/21",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"21"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedules",
+			"item": [
+				{
+					"name": "Fetch all schedules",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api-classroom-scheduler.herokuapp.com/api/v1/schedules",
+							"protocol": "https",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch Schedule By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-classroom-scheduler.herokuapp.com/api/v1/schedules/647725",
+							"protocol": "https",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"schedules",
+								"647725"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a  schedule",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleId\":282828,\r\n    \"title\":\"postman test\",\r\n    \"timings\":\"2:00 - 3:00\",\r\n    \"date\":\"2021/08/21\",\r\n    \"batchId\":2,\r\n    \"teacherId\":17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-classroom-scheduler.herokuapp.com/api/v1/schedules",
+							"protocol": "https",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a  schedule by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scheduleId\":7879897\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-classroom-scheduler.herokuapp.com/api/v1/schedules",
+							"protocol": "https",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"schedules"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batches",
+			"item": [
+				{
+					"name": "fetch all batches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/batches/",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"batches",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch a batch by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/batches/15",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"batches",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create a batch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"batchList\":[[25,\"final batch\",18],[25,\"final batch\",19]]}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://api-classroom-scheduler.herokuapp.com/api/v1/batches",
+							"protocol": "http",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a batch",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchId\":25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-classroom-scheduler.herokuapp.com/api/v1/batches",
+							"protocol": "https",
+							"host": [
+								"api-classroom-scheduler",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"batches"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
