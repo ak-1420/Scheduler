@@ -13,6 +13,8 @@ class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            teacher_to_filter:-1,
+            teachers_list_for_filter:[],
             ismanualSchedule:false,
             schedules:[],
             navMonth:0,
@@ -42,6 +44,23 @@ class Calendar extends React.Component {
         this.daysInMonth();
         this.tryWeekDays();
         this.fetchSchedules();
+        this.fetchTeachers();
+    }
+
+
+    fetchTeachers = () => {
+        const url = `https://api-classroom-scheduler.herokuapp.com/api/v1/users`
+
+        fetch(url).then( (response) => response.json())
+        .then( (data) => {
+            console.log('teachers fetched:',data);
+            this.setState({
+                ...this.state,
+                teachers_list_for_filter:data.data
+            },()=>{
+                console.log('teachers:',this.state.teachers_list_for_filter);
+            })
+        })
     }
 
 
@@ -254,6 +273,15 @@ class Calendar extends React.Component {
          })
       }
 
+
+      filterTeacher = (e) => {
+             this.setState({
+                 teacher_to_filter : e.target.value
+             },()=>{
+                 console.log('filter by teacher id:',this.state.teacher_to_filter)
+             })
+      }
+
       
     render() {
 
@@ -261,9 +289,26 @@ class Calendar extends React.Component {
 
 
         const {viewMode} = this.props;
+        const {teachers_list_for_filter} = this.state;
 
         return (
             <div className="calender"> 
+
+            {/* filter by teacher  */}
+
+            <div className="calender_view teacher-filter" >
+                <select  name="teacherId" id="selectTeacher"  title="filter by teacher id" onClick={this.filterTeacher}>
+                <option value={-1}>filter by teacher id</option>
+                    {
+                        (teachers_list_for_filter) && teachers_list_for_filter.map((teacher,indx ) => {
+                            if(teacher.type === 'teacher')
+                            return <option key={indx} value={teacher.id}>{teacher.email}</option>
+                        })
+                    }
+                </select>
+            </div>
+
+            <br/>
 
             {(user && user.type === 'admin') && <button title="add a schedule" className="button btn-schedule" onClick = {this.setScheduleWithManualDate}>+</button>}
 
@@ -280,14 +325,15 @@ class Calendar extends React.Component {
 
                 {
                      (viewMode === 'Week') &&
+                     
                      <div className="prev-next-month">
                        <span onClick={this.prevWeek}  className="previous round">&#8249;</span>
                        <span onClick={this.nextWeek} className="next round">&#8250;</span>
-                   </div>
+                     </div>
                  }
 
                 {
-                     (viewMode === 'Day') &&
+                     (viewMode === 'Day') && 
                      <div className="prev-next-month">
                        <span onClick={this.prevDay}  className="previous round">&#8249;</span>
                        <span onClick={this.nextDay} className="next round">&#8250;</span>
@@ -300,9 +346,9 @@ class Calendar extends React.Component {
                      <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
                  </div>
 
-               {(viewMode === 'Month') && <MonthCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Week') && <WeekCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Day') && <DayCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Month') && <MonthCalendar filterId = {this.state.teacher_to_filter} setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Week') && <WeekCalendar filterId = {this.state.teacher_to_filter} setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Day') && <DayCalendar filterId = {this.state.teacher_to_filter} setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
 
             </div>
         );

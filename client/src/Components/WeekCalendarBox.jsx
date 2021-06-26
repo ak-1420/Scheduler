@@ -109,11 +109,32 @@ class WeekCalendarBox extends React.Component {
                             todaySchedules.map((schedule,indx) => {
                                 if(schedule)
                                  {
-                                     return (
-                                      <div className="schedule_box">
-                                          <span>{schedule.title}</span>
-                                      </div>
+                                    if(schedule.teacherId === parseInt(this.props.filterId))
+                                    {
+                                        return (
+                                          <div className="schedule_box" key={indx}>
+                                         <span>{schedule.title}</span>
+                                         <span>{schedule.timings}</span>
+                                         <span>{schedule.date.slice(0,10)}</span>
+                                         <span>{schedule.teacherId}</span>
+                                         <span>{schedule.batchId}</span>
+                                       </div>
+                                   );
+                                  
+                               }
+
+                               else if(parseInt(this.props.filterId) === -1)
+                               {
+                                   return (
+                                       <div className="schedule_box" key={indx}>
+                                      <span>{schedule.title}</span>
+                                      <span>{schedule.timings}</span>
+                                      <span>{schedule.date.slice(0,10)}</span>
+                                      <span>{schedule.teacherId}</span>
+                                      <span>{schedule.batchId}</span>
+                                    </div>
                                     );
+                               }
                                 }
                              })
                           }
