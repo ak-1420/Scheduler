@@ -2,8 +2,6 @@
 
 const mysql = require('mysql')
 
-// local db connection
-
 const dbConn = mysql.createPool({
     host: 'btnicthwdmin7xsfo3fq-mysql.services.clever-cloud.com',
     user:'ufecatchyxd2rme1',
@@ -13,6 +11,13 @@ const dbConn = mysql.createPool({
 });
 
 
+dbConn.connect( (error) => {
+    if(error){
+        console.log('error when connecting to database:',error)
+    }
+    else
+    console.log('Datebase Connected!');
+})
 
 module.exports = dbConn;
 
