@@ -13,7 +13,7 @@ app.use(express.urlencoded({
 
 
 app.get('/',(req,res) => {
-    res.send('Server ')
+    res.send('<center><h1>Classromm Scheduler</h1></center>')
 })
 
 
