@@ -84,6 +84,7 @@ class Teachers extends React.Component {
               this.props.setToast({type:'success',data:'teacher added sucessfully!'});
               console.log(response);
               this.fetchTeachers();
+              window.location.reload();
           }
        }).catch((error) => {
            this.props.setToast({type:'danger',data:'unable to add teacher try again!'})

@@ -153,6 +153,7 @@ class Batches extends React.Component {
         {
             this.props.setToast({type:'success',data:'batch added sucessfully!'});
             console.log(response);
+            window.location.reload();
             this.fetchBatches();
         }
      }).catch((error) => {
