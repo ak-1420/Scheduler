@@ -3,12 +3,13 @@
 const mysql = require('mysql')
 
 const dbConn = mysql.createPool({
-    host: 'btnicthwdmin7xsfo3fq-mysql.services.clever-cloud.com',
-    user:'ufecatchyxd2rme1',
-    port:'3306',
-    password:'sCLxgovH9cgLQNUr5zly',
-    database:'btnicthwdmin7xsfo3fq'
+    host: process.env.DB_HOST,
+    user:process.env.DB_USER, 
+    port:process.env.DB_PORT, 
+    password:process.env.DB_PASSWORD, 
+    database:process.env.DB, 
 });
+
 
 module.exports = dbConn;
 
