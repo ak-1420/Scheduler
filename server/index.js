@@ -13,7 +13,7 @@ app.use(express.urlencoded({
 
 
 app.get('/',(req,res) => {
-    res.send('<center><h1>Classromm Scheduler</h1></center>')
+    res.send('<center><h1>Classroom Scheduler Backend</h1></center>')
 })
 
 

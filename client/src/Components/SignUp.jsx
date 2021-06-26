@@ -30,13 +30,13 @@ class SignUp extends React.Component {
 
         if(email === '')
         {
-            window.alert('please enter an email!');
+            this.props.setToast({type:'danger',data:'please enter an email!'});
             return;
         }
         
         if(password === '')
         {
-            window.alert('please enter a password!')
+            this.props.setToast({type:'danger',data:'please enter a password!'})
             return;
         }
 
@@ -63,17 +63,17 @@ class SignUp extends React.Component {
 
          if(data.message !== undefined)
          {
-             window.alert('registration successful!,please login!')
+             this.props.setToast({type:'success',data:'registration successful!,please login!'})
              window.location.pathname = '/signin'
          }
          else 
          {
-             window.alert('email ID exists !');
+             this.props.setToast({type:'danger',data:'email ID exists !'});
              return;
          }
           
          }).catch((error) => {
-            window.alert('unable to signup please try again!')
+            this.props.setToast({type:'danger',data:'unable to signup please try again!'})
             console.log('error:',error)
             return;
            

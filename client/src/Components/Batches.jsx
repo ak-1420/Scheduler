@@ -78,12 +78,12 @@ class Batches extends React.Component {
         const {users ,name,batchId,batches} =  this.state;
 
         if(name === ''){
-           window.alert('please enter the batch name');
+          this.props.setToast({type:'danger',data:'please enter the batch name'});
             return;
         }
         
         if(batchId === null || batchId === "") {
-            window.alert('please enter batchId')
+            this.props.setToast({type:'danger',data:'please enter batchId'})
             return;
         }
 
@@ -109,7 +109,7 @@ class Batches extends React.Component {
 
         if(isBatchIdExists)
         {
-            window.alert('batchId already exists try another one!');
+            this.props.setToast({type:'danger',data:'batchId already exists!'});
             return;
         }
 
@@ -127,7 +127,7 @@ class Batches extends React.Component {
         })
 
         if(!isAtleaseOneStudentSelected){
-            window.alert('please add atleast one student to the batch!')
+            this.props.setToast({type:'danger',data:'please add atleast one student to the batch!'})
             return;
         }
 
@@ -151,11 +151,12 @@ class Batches extends React.Component {
       }).then( (response) => { 
         if(response.status === 200)
         {
-            window.alert('batch added sucessfully!');
+            this.props.setToast({type:'success',data:'batch added sucessfully!'});
             console.log(response);
             this.fetchBatches();
         }
      }).catch((error) => {
+        this.props.setToast({type:'danger',data:'unable to add batch try again!'});
          console.log('error:',error)
      });
   

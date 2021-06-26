@@ -5,6 +5,7 @@ const week = ['Sun' , 'Mon' , 'Tue' ,'Wed' , 'Thu' , 'Fri' , 'Sat']
 class CalendarBox extends React.Component {
 
     constructor(props) {
+        
         super(props);
         this.state = {
             currentDay:this.props.day - this.props.fpd,
@@ -117,7 +118,7 @@ class CalendarBox extends React.Component {
                                 if(schedule)
                                  {
                                      return (
-                                      <div className="schedule_box">
+                                      <div className="schedule_box" key={indx}>
                                           <span>{schedule.title}</span>
                                       </div>
                                     );

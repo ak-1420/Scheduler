@@ -43,7 +43,7 @@ class WeekCalendar extends React.Component {
                 {
                     days.map ((val,indx) => {
                        return(
-                        <WeekCalendarBox displaySchedules ={this.props.displaySchedules} updateSchedule={this.props.updateSchedule} finaldates={this_week_days} displayWeek ={displayWeek[val-1]} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={7 - this_week_days.length} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
+                        <WeekCalendarBox setToast={this.props.setToast} displaySchedules ={this.props.displaySchedules} updateSchedule={this.props.updateSchedule} finaldates={this_week_days} displayWeek ={displayWeek[val-1]} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={7 - this_week_days.length} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
                        );
                     })
                 }

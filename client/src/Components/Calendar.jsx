@@ -251,7 +251,7 @@ class Calendar extends React.Component {
         return (
             <div className="calender">
 
-               <Modal schedule = {this.state.schedule}/>
+               <Modal setToast={this.props.setToast} schedule = {this.state.schedule}/>
 
                 {/* previous next buttons common for all views */}
                  {
@@ -284,9 +284,9 @@ class Calendar extends React.Component {
                      <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
                  </div>
 
-               {(viewMode === 'Month') && <MonthCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Week') && <WeekCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
-               {(viewMode === 'Day') && <DayCalendar displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Month') && <MonthCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Week') && <WeekCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
+               {(viewMode === 'Day') && <DayCalendar setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} navDay={this.state.navDay} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
 
             </div>
         );

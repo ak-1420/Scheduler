@@ -16,13 +16,13 @@ class Main extends React.Component {
         const {path,navigate,viewMode} = this.props;
 
         if(window.location.pathname === '/batches') return (<main>
-            <Batches />
+            <Batches setToast={this.props.setToast}/>
             </main>
             );
 
         if(window.location.pathname === '/teachers') return (
             <main>
-                <Teachers />
+                <Teachers setToast={this.props.setToast}/>
             </main>
         );
 
@@ -33,17 +33,17 @@ class Main extends React.Component {
         );
         if(window.location.pathname === '/signin') return (
             <main>
-                <Login path={path} navigate={navigate}/>
+                <Login setToast={this.props.setToast} path={path} navigate={navigate}/>
             </main>
         );
         if(window.location.pathname === '/signup') return (
             <main>
-                <SignUp path={path} navigate={navigate} />
+                <SignUp setToast={this.props.setToast} path={path} navigate={navigate} />
             </main>
         );
         if(window.location.pathname === '/calendar') return (
             <main>
-                <Calendar  viewMode={viewMode} /> 
+                <Calendar setToast={this.props.setToast}  viewMode={viewMode} /> 
             </main>
         );
 
@@ -55,16 +55,6 @@ class Main extends React.Component {
             </main>
         );
         
-        
-        // return (
-        //     <main>
-                        
-        //                 {window.location.pathname === "" && <h1 className="text-center vertical-center center-title">classroom Scheduler</h1> }
-        //                 {path === "signin" && <Login path={path} navigate={navigate}/>   }
-        //                 {path === "signup" && <SignUp path={path} navigate={navigate} /> }
-        //                 {path === "calendar" && <Calendar  viewMode={viewMode} /> }
-        //     </main>
-        // );
     }
 
 }

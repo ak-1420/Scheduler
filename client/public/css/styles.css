@@ -767,3 +767,38 @@ a {
     opacity: 1;
   }
 }
+
+.toast-container {
+  position: fixed;
+  z-index: 1420;
+  width: 33%;
+  left: 33%;
+  height: 40px;
+  top: 10%;
+  right: 33%;
+  border-radius: 5px;
+  display: none;
+}
+
+.toast-success {
+  background-color: #28a745;
+  border: 2px solid #28a745;
+  outline: none !important;
+  -webkit-box-shadow: 0 0 10px #71ce95;
+          box-shadow: 0 0 10px #71ce95;
+}
+
+.toast-danger {
+  background-color: #dc3545;
+  border: 2px solid #dc3545;
+  outline: none !important;
+  -webkit-box-shadow: 0 0 10px #ce8771;
+          box-shadow: 0 0 10px #ce8771;
+  text-align: center;
+}
+
+.toast-text {
+  color: #fff;
+  text-align: center;
+  margin: 5px auto 5px auto;
+}

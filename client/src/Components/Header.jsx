@@ -26,7 +26,7 @@ class Header extends React.Component {
 
     signOut = () => {
         window.localStorage.setItem('user',null);
-        window.alert('logout completed successfully!')
+        this.props.setToast({type:'success',data:'signed out successfully!'})
         window.location.pathname = ""
     }
     

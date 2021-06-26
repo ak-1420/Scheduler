@@ -123,27 +123,27 @@ class Modal extends React.Component {
            const {finalSchedule,schedules} = this.state;
 
            if(finalSchedule.timings === '') {
-               window.alert('please select timings');
+               this.props.setToast({type:'danger',data:'please select timings'});
                return;
            }
 
            if(finalSchedule.date === '') {
-            window.alert('please select date');
+            this.props.setToast({type:'danger',data:'please select date'});
             return;
         }
 
         if(finalSchedule.title === '') {
-            window.alert('please enter a title');
+            this.props.setToast({type:'danger',data:'please enter a title'});
             return;
         }
 
         if(finalSchedule.batchId === '') {
-            window.alert('please select a batch');
+            this.props.setToast({type:'danger',data:'please select a batch'});
             return;
         }
 
         if(finalSchedule.teacherId === '') {
-            window.alert('please select a teacher');
+            this.props.setToast({type:'danger',data:'please select a teacher'});
             return;
         }
 
@@ -169,7 +169,7 @@ class Modal extends React.Component {
 
          if(isOverlappingTime)
          {
-             window.alert(`there is already a schedule at ${finalSchedule.timings}`)
+             this.props.setToast({type:'danger',data:`there is already a schedule at ${finalSchedule.timings}`})
              return;
          }
 
@@ -197,7 +197,7 @@ class Modal extends React.Component {
           }).then( (response) => { 
             if(response.status === 200)
             {
-                window.alert('schedule added sucessfully!');
+                this.props.setToast({type:'success',data:'schedule added sucessfully!'});
                 console.log(response);
                 this.fetchSchedules();
                 this.closeModal();
@@ -205,7 +205,8 @@ class Modal extends React.Component {
             }
             else
             {
-              window.alert(`error: server responded with ${response.status}`)
+              this.props.setToast(`unable to add a schedule, try again!`);
+              
             }
          }).catch((error) => {
              console.log('error:',error)

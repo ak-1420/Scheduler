@@ -55,13 +55,13 @@ class Teachers extends React.Component {
 
         if(email === "")
         {
-            window.alert('please enter an email!')
+           this.props.setToast({type:'danger',data:'please enter an email!'})
             return;
         }
        
         if(password === "")
         {
-            window.alert('please enter a password')
+            this.props.setToast({type:'danger',data:'please enter a password'})
             return;
         }
 
@@ -81,11 +81,12 @@ class Teachers extends React.Component {
         }).then( (response) => { 
           if(response.status === 200)
           {
-              window.alert('teacher added sucessfully!');
+              this.props.setToast({type:'success',data:'teacher added sucessfully!'});
               console.log(response);
               this.fetchTeachers();
           }
        }).catch((error) => {
+           this.props.setToast({type:'danger',data:'unable to add teacher try again!'})
            console.log('error:',error)
        });
     
@@ -128,7 +129,7 @@ class Teachers extends React.Component {
                          
                          teachers.map((teacher,id) => {
                              if(teacher.type === 'teacher')
-                           return <BatchBox key={id}  batchId = {teacher.id} name ={teacher.email} id={id}/>
+                           return <BatchBox  key={id}  batchId = {teacher.id} name ={teacher.email} id={id}/>
                          })
                       }
                  </div>

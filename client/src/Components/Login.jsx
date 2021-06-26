@@ -24,13 +24,14 @@ class Login extends React.Component {
 
         if(email === '')
         {
-            window.alert('please enter an email!');
+            this.props.setToast({type:'danger',data:'please enter an email!'});
             return;
         }
         
         if(password === '')
         {
-            window.alert('please enter a password!')
+            this.props.setToast({type:'danger',data:'please enter a password!'});
+            
             return;
         }
 
@@ -57,17 +58,17 @@ class Login extends React.Component {
           {
              const user = data.data[0]
              window.localStorage.setItem('user',JSON.stringify(user));
-             window.alert('Login successful!')
+             this.props.setToast({type:'success',data:`Welcome back ${user.email}`})
              window.location.pathname = '/calendar'
           }
           else if(data.status === 'no-user-exists')
           {
-              window.alert('invalid email/password combination!')
+              this.props.setToast({type:'danger',data:'invalid email/password combination!'})
               return;
           }
 
          }).catch((error) => {
-            window.alert('unable to login please try again!')
+            this.props.setToast({type:'danger',data:'unable to login please try again!'})
             console.log('error:',error)
             return;
            

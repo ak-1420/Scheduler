@@ -31,7 +31,7 @@ class MonthCalendar extends React.Component {
                 {
                     weekDays.map( (val,indx) => {
                         return(
-                            <CalendarBox isWeekBox = {true} key={indx} id = {indx} day={indx + 1} weekday={val} />
+                            <CalendarBox  isWeekBox = {true} key={indx} id = {indx} day={indx + 1} weekday={val} />
                         );
                     })
                 }
@@ -39,7 +39,7 @@ class MonthCalendar extends React.Component {
                     
                     days.map ((val,indx) => {
                        return(
-                        <CalendarBox displaySchedules={this.props.displaySchedules} updateSchedule={this.props.updateSchedule} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={firstDay} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
+                        <CalendarBox setToast={this.props.setToast} displaySchedules={this.props.displaySchedules} updateSchedule={this.props.updateSchedule} month={month} year={year} week={weekDays} fpd={frontPaddingDays} bpd={backPaddingsDays} nd={numberOfDays} fd={firstDay} isWeekBox = {false} key={indx} id = {indx} day={val} weekday={weekDays[indx % 7]} /> 
                        );
                     })
                 }
