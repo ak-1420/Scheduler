@@ -10,14 +10,5 @@ const dbConn = mysql.createPool({
     database:'btnicthwdmin7xsfo3fq'
 });
 
-
-dbConn.connect( (error) => {
-    if(error){
-        console.log('error when connecting to database:',error)
-    }
-    else
-    console.log('Datebase Connected!');
-})
-
 module.exports = dbConn;
 
