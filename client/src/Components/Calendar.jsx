@@ -257,13 +257,15 @@ class Calendar extends React.Component {
       
     render() {
 
-       
+        const user = (localStorage.getItem('user') !== null) ? JSON.parse(localStorage.getItem('user')) : null ;
+
+
         const {viewMode} = this.props;
 
         return (
             <div className="calender"> 
 
-               <button title="add a schedule" className="button btn-schedule" onClick = {this.setScheduleWithManualDate}>+</button>
+            {(user && user.type === 'admin') && <button title="add a schedule" className="button btn-schedule" onClick = {this.setScheduleWithManualDate}>+</button>}
 
                <Modal isManualDate = {this.state.ismanualSchedule} setToast={this.props.setToast} schedule = {this.state.schedule}/>
 
