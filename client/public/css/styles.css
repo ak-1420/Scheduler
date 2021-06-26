@@ -802,3 +802,33 @@ a {
   text-align: center;
   margin: 5px auto 5px auto;
 }
+
+.button {
+  background-color: dodgerblue;
+  position: absolute;
+  top: 10%;
+  left: 1%;
+  border: none;
+  color: white;
+  padding: auto;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.btn-schedule {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.btn-schedule:hover {
+  outline: none !important;
+  border: 2px solid #007bff;
+  -webkit-box-shadow: 0 0 10px #719ECE;
+          box-shadow: 0 0 10px #719ECE;
+}

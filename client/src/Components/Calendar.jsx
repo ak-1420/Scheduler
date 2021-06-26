@@ -13,6 +13,7 @@ class Calendar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            ismanualSchedule:false,
             schedules:[],
             navMonth:0,
             numberOfDays : 0,
@@ -242,6 +243,17 @@ class Calendar extends React.Component {
           })
       }
 
+      setScheduleWithManualDate = () => {
+          //this method is to add a schedule manually
+         this.setState({
+             ismanualSchedule : true
+         },()=>{
+              //show modal
+              var modal = document.getElementById("modal");
+              modal.style.display = 'block';
+         })
+      }
+
       
     render() {
 
@@ -249,9 +261,11 @@ class Calendar extends React.Component {
         const {viewMode} = this.props;
 
         return (
-            <div className="calender">
+            <div className="calender"> 
 
-               <Modal setToast={this.props.setToast} schedule = {this.state.schedule}/>
+               <button title="add a schedule" className="button btn-schedule" onClick = {this.setScheduleWithManualDate}>+</button>
+
+               <Modal isManualDate = {this.state.ismanualSchedule} setToast={this.props.setToast} schedule = {this.state.schedule}/>
 
                 {/* previous next buttons common for all views */}
                  {

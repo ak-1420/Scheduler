@@ -120,6 +120,10 @@ class CalendarBox extends React.Component {
                                      return (
                                       <div className="schedule_box" key={indx}>
                                           <span>{schedule.title}</span>
+                                          <span>{schedule.timings}</span>
+                                          <span>{schedule.date.slice(0,10)}</span>
+                                          <span>{schedule.teacherId}</span>
+                                          <span>{schedule.batchId}</span>
                                       </div>
                                     );
                                 }

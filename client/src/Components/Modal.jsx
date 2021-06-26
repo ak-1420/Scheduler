@@ -10,6 +10,8 @@ class Modal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            manualDate:'',
+            scheduleId:Math.floor((Math.random() * 10000000) + 1),
             teachers:[],
             batches:[],
             schedules:[],
@@ -88,14 +90,14 @@ class Modal extends React.Component {
     }
 
     handleChange = (e) => {
-        const {schedule} = this.props
+        const {schedule,isManualDate} = this.props
 
         this.setState({
             finalSchedule:{
                 ...this.state.finalSchedule,
                 [e.target.name]:e.target.value,
-                date:schedule.date,
-                scheduleId:schedule.scheduleId
+                date:(isManualDate) ? this.state.manualDate : schedule.date,
+                scheduleId:(isManualDate) ? this.state.scheduleId : schedule.scheduleId
             }
         },()=>{
             console.log(schedule);
@@ -105,16 +107,25 @@ class Modal extends React.Component {
     }
 
     handleSelected = (e) => {
-        const {schedule} = this.props;
+        const {schedule,isManualDate} = this.props;
         this.setState({
             finalSchedule:{
                 ...this.state.finalSchedule,
                 [e.target.name] : document.getElementById(e.target.id).value,
-                date:schedule.date,
-                scheduleId:schedule.scheduleId
+                date:(isManualDate) ? this.state.manualDate : schedule.date,
+                scheduleId:(isManualDate) ? this.state.scheduleId : schedule.scheduleId
             }
         },()=>{
             console.log('not:',this.state.finalSchedule)
+        })
+    }
+
+    captureDate = (e) => {
+        this.setState({
+            ...this.state,
+            manualDate:e.target.value
+        },()=>{
+            console.log(this.state.manualDate)
         })
     }
 
@@ -157,10 +168,12 @@ class Modal extends React.Component {
              {
                  // teacher already have some schedules
                  // now check they are overlapping with this schedule
+                 
 
-                 if(finalSchedule.timings === schedule.timings )
+                 if((finalSchedule.timings === schedule.timings) && new Date(finalSchedule.date).toDateString() === new Date(schedule.date).toDateString() ) // same dates and same times
                  {
                      // they are overlapping
+                     console.log('dates overlapped')
                      isOverlappingTime = true
                  }
              }
@@ -169,7 +182,7 @@ class Modal extends React.Component {
 
          if(isOverlappingTime)
          {
-             this.props.setToast({type:'danger',data:`there is already a schedule at ${finalSchedule.timings}`})
+             this.props.setToast({type:'danger',data:`there is already a schedule at ${finalSchedule.timings} on ${finalSchedule.date}`})
              return;
          }
 
@@ -218,7 +231,7 @@ class Modal extends React.Component {
 
     render() {
 
-        const {batches ,teachers} = this.state;
+        const {batches ,teachers,manualDate} = this.state;
 
        const unique_batches = []
 
@@ -253,8 +266,8 @@ class Modal extends React.Component {
                         </div>
 
                         <div className="modal-body">
-                        <input readOnly type="text" style={{marginLeft:'auto',marginRight:'auto',marginTop:'10px',marginBottom:'10px'}} className="form-input" name="date" value={schedule.date} />
-                            
+                       { !(this.props.isManualDate) && <input readOnly  style={{marginLeft:'auto',marginRight:'auto',marginTop:'10px',marginBottom:'10px'}} className="form-input" type="text" name="date" value={schedule.date} />}
+                       { (this.props.isManualDate) && <input  style={{marginLeft:'auto',marginRight:'auto',marginTop:'10px',marginBottom:'10px'}} className="form-input" type="date" name="date" valye={manualDate} onChange={this.captureDate}/>}     
                             <input onChange = {this.handleChange} type="text" style={{marginLeft:'auto',marginRight:'auto',marginTop:'10px',marginBottom:'10px'}} className="form-input" name="title" placeholder="enter a title" />
                             
 

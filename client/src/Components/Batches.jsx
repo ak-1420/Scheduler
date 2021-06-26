@@ -32,7 +32,8 @@ class Batches extends React.Component {
         .then( (data) => {
             console.log('users fetched:',data);
             this.setState({
-                users:data.data
+                ...this.state,
+                users:this.state.users.concat(data.data)
             },()=>{
                 console.log('users:',this.state.users);
             })
@@ -46,8 +47,11 @@ class Batches extends React.Component {
         .then((response)=>response.json())
         .then((data)=>{
             console.log('data from batches:',data);
+
+            
             this.setState({
-                batches:data.data
+                ...this.state,
+                batches: this.state.batches.concat(data.data)
             },() => {
                 console.log('batches in ui ',this.state.batches)
             })
@@ -153,8 +157,9 @@ class Batches extends React.Component {
         {
             this.props.setToast({type:'success',data:'batch added sucessfully!'});
             console.log(response);
-            window.location.reload();
-            this.fetchBatches();
+            this.hideForm();
+              this.fetchBatches();
+            window.location.reload()
         }
      }).catch((error) => {
         this.props.setToast({type:'danger',data:'unable to add batch try again!'});
