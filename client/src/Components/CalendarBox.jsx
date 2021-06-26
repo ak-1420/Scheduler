@@ -118,32 +118,32 @@ class CalendarBox extends React.Component {
                                 if(schedule)
                                  {
 
-                                     if(schedule.teacherId === parseInt(this.props.filterId))
-                                     {
-                                         return (
-                                           <div className="schedule_box" key={indx}>
-                                          <span>{schedule.title}</span>
-                                          <span>{schedule.timings}</span>
-                                          <span>{schedule.date.slice(0,10)}</span>
-                                          <span>{schedule.teacherId}</span>
-                                          <span>{schedule.batchId}</span>
-                                        </div>
-                                    );
-                                   
-                                }
+                                    if(schedule.teacherId === parseInt(this.props.filterId))
+                                    {
+                                        return (
+                                          <div className="schedule_box" key={indx} style={{backgroundColor:`#${Math.floor(Math.random()*16777215).toString(16)}`}}>
+                                         <p>title:{schedule.title}</p>
+                                      <p>timings:{schedule.timings}</p>
+                                      <p>date:{schedule.date.slice(0,10)}</p>
+                                      <p>teacher id:{schedule.teacherId}</p>
+                                      <p>batch id:{schedule.batchId}</p>
+                                       </div>
+                                   );
+                                  
+                               }
 
-                                else if(parseInt(this.props.filterId) === -1)
-                                {
-                                    return (
-                                        <div className="schedule_box" key={indx}>
-                                       <span>{schedule.title}</span>
-                                       <span>{schedule.timings}</span>
-                                       <span>{schedule.date.slice(0,10)}</span>
-                                       <span>{schedule.teacherId}</span>
-                                       <span>{schedule.batchId}</span>
-                                     </div>
-                                     );
-                                }
+                               else if(parseInt(this.props.filterId) === -1)
+                               {
+                                   return (
+                                       <div className="schedule_box" key={indx} style={{backgroundColor:`#${Math.floor(Math.random()*16777215).toString(16)}`}}>
+                                      <p>title:{schedule.title}</p>
+                                      <p>timings:{schedule.timings}</p>
+                                      <p>date:{schedule.date.slice(0,10)}</p>
+                                      <p>teacher id:{schedule.teacherId}</p>
+                                      <p>batch id:{schedule.batchId}</p>
+                                    </div>
+                                    );
+                               }
 
 
                                

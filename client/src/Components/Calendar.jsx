@@ -293,29 +293,18 @@ class Calendar extends React.Component {
 
         return (
             <div className="calender"> 
-
+              
             {/* filter by teacher  */}
-
-            <div className="calender_view teacher-filter" >
-                <select  name="teacherId" id="selectTeacher"  title="filter by teacher id" onClick={this.filterTeacher}>
-                <option value={-1}>filter by teacher id</option>
-                    {
-                        (teachers_list_for_filter) && teachers_list_for_filter.map((teacher,indx ) => {
-                            if(teacher.type === 'teacher')
-                            return <option key={indx} value={teacher.id}>{teacher.email}</option>
-                        })
-                    }
-                </select>
-            </div>
-
-            <br/>
-
+            <div className="step-header">
             {(user && user.type === 'admin') && <button title="add a schedule" className="button btn-schedule" onClick = {this.setScheduleWithManualDate}>+</button>}
 
-               <Modal isManualDate = {this.state.ismanualSchedule} setToast={this.props.setToast} schedule = {this.state.schedule}/>
 
-                {/* previous next buttons common for all views */}
-                 {
+                  <div className="display_month_year"> 
+                     <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
+                 </div>
+
+              {/* test view */}
+              {
                      (viewMode === 'Month') &&
                      <div className="prev-next-month">
                        <span onClick={this.prevMonth}  className="previous round">&#8249;</span>
@@ -342,9 +331,59 @@ class Calendar extends React.Component {
 
                  {/* display month and year common for all views */}
 
-                 <div className="display_month_year">
+                 <div className="calender_view teacher-filter" style={{zIndex:10}}>
+
+                <select  name="teacherId" id="selectTeacher"  title="filter by teacher id" onClick={this.filterTeacher}>
+                <option value={-1}>filter by teacher id</option>
+                    {
+                        (teachers_list_for_filter) && teachers_list_for_filter.map((teacher,indx ) => {
+                            if(teacher.type === 'teacher')
+                            return <option key={indx} value={teacher.id}>{teacher.email}</option>
+                        })
+                    }
+                </select>
+            </div>
+
+
+              {/* test view */}
+            </div>
+
+           
+ 
+               <Modal isManualDate = {this.state.ismanualSchedule} setToast={this.props.setToast} schedule = {this.state.schedule}/>
+
+                {/* previous next buttons common for all views */}
+
+                 {
+                //      (viewMode === 'Month') &&
+                //      <div className="prev-next-month">
+                //        <span onClick={this.prevMonth}  className="previous round">&#8249;</span>
+                //        <span onClick={this.nextMonth} className="next round">&#8250;</span>
+                //    </div>
+                 }
+
+                {
+                    //  (viewMode === 'Week') &&
+                     
+                    //  <div className="prev-next-month">
+                    //    <span onClick={this.prevWeek}  className="previous round">&#8249;</span>
+                    //    <span onClick={this.nextWeek} className="next round">&#8250;</span>
+                    //  </div>
+                 }
+
+                {
+                //      (viewMode === 'Day') && 
+                //      <div className="prev-next-month">
+                //        <span onClick={this.prevDay}  className="previous round">&#8249;</span>
+                //        <span onClick={this.nextDay} className="next round">&#8250;</span>
+                //    </div>
+                 }
+
+                 {/* display month and year common for all views */}
+
+                 {/* <div className="display_month_year">
                      <h4 className="text-dark">{`${Months[this.state.month]} - ${this.state.year}`}</h4>
-                 </div>
+                 </div> */}
 
                {(viewMode === 'Month') && <MonthCalendar filterId = {this.state.teacher_to_filter} setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}
                {(viewMode === 'Week') && <WeekCalendar filterId = {this.state.teacher_to_filter} setToast={this.props.setToast} displaySchedules={this.state.schedules} updateSchedule={this.updateSchedule} weeks = {this.state.weeks} navWeek={this.state.navWeek} displayWeek={this.state.displayWeek} month={this.state.month} year={this.state.year} frontPaddingDays={this.state.frontPaddingDays} backPaddingsDays={this.state.backPaddingsDays} numberOfDays={this.state.numberOfDays} firstDay={this.state.firstDay} navMonth = {this.state.navMonth} weekDays ={WeekDays} />}

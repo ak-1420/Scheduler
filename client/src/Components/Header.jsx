@@ -9,7 +9,8 @@ class Header extends React.Component {
         };
     }
 
-    home = () => {
+    home = (e) => {
+        e.preventDefault()
        this.props.navigate('')
        window.location.pathname = '/'
     }
@@ -24,35 +25,95 @@ class Header extends React.Component {
         window.location.pathname = '/signup'
     }
 
-    signOut = () => {
+    signOut = (e) => {
+        e.preventDefault()
         window.localStorage.setItem('user',null);
         this.props.setToast({type:'success',data:'signed out successfully!'})
         window.location.pathname = ""
     }
     
-    navCalendar = () => {
+    navCalendar = (e) => {
+        e.preventDefault()
         window.location.pathname = '/calendar'
     }
-
+    
+    openSideBar = (e) => {
+        e.preventDefault()
+        var x = document.getElementById("header");
+        if (x.className === "topnav") {
+          x.className += " responsive";
+        } else {
+          x.className = "topnav";
+        }
+      
+    }
+     
     render() {
 
         const user = (localStorage.getItem('user') !== null) ? JSON.parse(localStorage.getItem('user')) : null ;
 
         return (
-            <header>
-                { <h1 className="text-title" onClick={this.home}>Classroom <small>Scheduler</small></h1> }
+            <header className="topnav" id="header">
 
-               {(user && user.type == 'admin') && <ul className="list-group">
+
+                <a href="/" onClick={this.home} className="active btn btn-light">Classroom Scheduler</a>
+                   {
+                         (user) 
+                        && <React.Fragment>
+                       {window.location.pathname !== '/calendar' && <a onClick={this.navCalendar} href ="/calendar" className="btn btn-light " >calendar</a>}
+                        </React.Fragment>
+                    }
+
+               
+                
+
+               
+
+
+                {(user && user.type == 'admin') && 
+                //  <ul className="list-group">
+                    <React.Fragment>
+                    <a className="btn btn-light" href="/batches"> Batches </a>
+                    <a className="btn btn-light" href="/teachers">Teachers</a>
+                    </React.Fragment>
+                //  </ul>
+                }
+
+              {( user && window.location.pathname === '/calendar') && <DateByView changeViewMode = {this.props.changeViewMode} /> } 
+
+
+              { !user && (window.location.pathname !== '/calendar') && 
+                        <React.Fragment>
+                        <a href="/signin" onClick={this.navSignIn} className="btn btn-light" type="submit">sign in</a>
+                        <a href="/signup" onClick={this.navSignUp} className="btn btn-light" type="submit">sign up</a>
+                        </React.Fragment>
+               }
+
+               {(user) &&  <a onClick={this.signOut} href="/" className="btn btn-light" >sign out</a>}
+
+
+
+                
+                <a className="icon btn btn-light" onClick={this.openSideBar}>
+                    <i className="fa fa-bars"></i>
+                </a>
+
+
+
+
+                {/* { <h1 className="text-title" onClick={this.home}>Classroom <small>Scheduler</small></h1> } */}
+
+               {/* {(user && user.type == 'admin') && <ul className="list-group">
                     <a className="list-group-item" href="/batches"> Batches </a>
                     <a className="list-group-item" href="/teachers">Teachers</a>
                  </ul>
-                }
+                } */}
 
-                {( user && window.location.pathname === '/calendar') && <DateByView changeViewMode = {this.props.changeViewMode} /> }
+                {/* {( user && window.location.pathname === '/calendar') && <DateByView changeViewMode = {this.props.changeViewMode} /> } */}
                  
                 
 
-                <div className="auth">
+                {/* <div className="auth">
 
                     { !user && (window.location.pathname !== '/calendar') && 
                         <React.Fragment>
@@ -61,15 +122,16 @@ class Header extends React.Component {
                         </React.Fragment>
                     }
 
-                    {
-                         user 
-                        && <React.Fragment>
-                       {window.location.pathname !== '/calendar' && <button onClick={this.navCalendar} className="btn btn-light" type="submit">calendar</button>}
-                        <button onClick={this.signOut} className="btn btn-light" type="submit">sign out</button>
-                        </React.Fragment>
-                    }
+                    // {{
+                    //      user 
+                    //     && <React.Fragment>
+                    //    {window.location.pathname !== '/calendar' && <button onClick={this.navCalendar} className="btn btn-light" type="submit">calendar</button>}
+                    //     <button onClick={this.signOut} className="btn btn-light" type="submit">sign out</button>
+                    //     </React.Fragment>
+                    // } }
 
-                </div>
+                </div> */
+               }
             </header>
         );
     }
