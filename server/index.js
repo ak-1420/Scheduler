@@ -13,7 +13,7 @@ app.use(express.urlencoded({
 
 
 app.get('/',(req,res) => {
-    res.send('<center><h1>Classroom Scheduler Backend</h1><p> please visit <a href="https://classroom-scheduler.netlify.app/">Classroom Scheduler  app</a></p><h3>developed by Arun Kumar Kalakuntla</h3><a href="https://classroom-scheduler.netlify.app/"> </a><a href="mailto:arunkumarrkalakuntla2308@gmail.com">Mail me </a></center>')
+    res.send('<center><h1>Classroom Scheduler Backend</h1><p> please visit <a href="https://classroom-scheduler.netlify.app/">Classroom Scheduler  app</a></p><h3>developed by Arun Kumar Kalakuntla</h3><a href="https://classroom-scheduler.netlify.app/"> </a><a href="mailto:arunkumarkalakuntla2308@gmail.com">Mail me </a></center>')
 })
 
 
