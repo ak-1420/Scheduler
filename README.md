@@ -6,7 +6,7 @@ Classroom Scheduler Web App using React , MySQL , Node Js and Express Js
 
 Scheduler API’s:
 
-deployed backedn url: https://api-classroom-scheduler.herokuapp.com/
+deployed backend url: https://api-classroom-scheduler.herokuapp.com/
 
 POST:https://api-classroom-scheduler.herokuapp.com/api/v1/users/signup : to create user 
 
